@@ -1,0 +1,20 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation files(libs.class.superclass.protectionDomain.codeSource.location)
+
+    implementation libs.errorprone.gradle
+    implementation libs.protobuf.gradle
+    implementation libs.spotless.gradle
+    implementation libs.shadow.gradle
+    implementation libs.micronaut.application.gradle
+    implementation libs.micronaut.aot.gradle
+}

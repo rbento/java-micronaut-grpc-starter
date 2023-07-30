@@ -1,0 +1,44 @@
+plugins {
+  id 'rbento.starter.java-common-conventions'
+  id 'com.github.johnrengelman.shadow'
+  id 'io.micronaut.application'
+  id 'io.micronaut.aot'
+}
+
+dependencies {
+  annotationProcessor libs.micronaut.serde.processor
+  implementation libs.micronaut.serde.jackson
+  runtimeOnly libs.logback.classic
+  testImplementation libs.micronaut.http.client
+}
+
+graalvmNative.toolchainDetection = false
+
+micronaut {
+  runtime("netty")
+  testRuntime("junit5")
+  processing {
+    incremental(true)
+    annotations("rbento.starter.*")
+  }
+  aot {
+    // Please review carefully the optimizations enabled below
+    // Check https://micronaut-projects.github.io/micronaut-aot/latest/guide/ for more details
+    optimizeServiceLoading = false
+    convertYamlToJava = false
+    precomputeOperations = true
+    cacheEnvironment = true
+    optimizeClassLoading = true
+    deduceEnvironment = true
+    optimizeNetty = true
+  }
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven {
+    url "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+    mavenContent { snapshotsOnly() }
+  }
+}
