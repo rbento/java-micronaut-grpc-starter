@@ -1,4 +1,5 @@
 # java-micronaut-grpc-starter
+![Build](https://github.com/rbento/java-micronaut-grpc-starter/actions/workflows/gradle.yml/badge.svg)
 
 A starter for gRPC/Java projects backed by Micronaut.
 
